@@ -1,6 +1,6 @@
 ---
 title: "PF-0953 Programación geoespacial en R<br>Proyecto 01: R - Visualización de datos vectoriales"
-author: "Manuel Vargas"
+author: "Kevin Chavarría ESquivel"
 date: "2020-10-07"
 output:
   html_document:
@@ -163,3 +163,36 @@ ggplot(centroamerica, aes(fill=lifeExp))+
 
 ### Ejercicio 9 (20%)
 Extraiga en un nuevo data frame los países de América del Sur con área de al menos 2.5 millones de km2 o población de al menos 40 millones de personas y genere un mapa de coropletas para cada variable (i.e. área y población), con sus títulos correspondientes.
+
+```{r}
+```
+
+```{r}
+suramerica <- world[world$subregion == "South America",] %>%
+  filter(area_km2 >= 2500000)
+
+ggplot(suramerica, aes(fill=area_km2))+
+  geom_sf()+
+  geom_sf_label(aes(label=name_long))+
+  ggtitle("Paises suramericanos con mas de 2.5 millones de km2")+
+  xlab("")+ylab("")+
+  theme_bw()+
+  theme(legend.title = element_blank(), 
+        title =element_text(size=10, face='bold'))
+
+
+```
+
+```{r}
+popsuramerica <- world[world$subregion == "South America",] %>%
+  filter(pop >= 40000000)
+
+ggplot(popsuramerica, aes(fill=area_km2))+
+  geom_sf()+
+  geom_sf_label(aes(label=name_long))+
+  ggtitle("Paises suramericanos con mas de 40 millones de habitantes")+
+  xlab("")+ylab("")+
+  theme_bw()+
+  theme(legend.title = element_blank(), 
+        title =element_text(size=10, face='bold'))
+```
