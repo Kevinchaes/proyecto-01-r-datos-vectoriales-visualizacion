@@ -32,6 +32,8 @@ library(sf)
 library(spData)
 # paquete de manejo de datos
 library(dplyr)
+#modifica escalas o notaciones
+library(scales)
 ```
 
 Realice los siguientes ejercicios de graficación y manejo de datos vectoriales en R (el valor porcentual de cada uno se muestra entre paréntesis).
@@ -174,11 +176,11 @@ suramerica <- world[world$subregion == "South America",] %>%
 ggplot(suramerica, aes(fill=area_km2))+
   geom_sf()+
   geom_sf_label(aes(label=name_long))+
+  scale_fill_gradient(low = "green", high = "red", name = "Km2", labels = comma)+
   ggtitle("Paises suramericanos con mas de 2.5 millones de km2")+
   xlab("")+ylab("")+
   theme_bw()+
-  theme(legend.title = element_blank(), 
-        title =element_text(size=10, face='bold'))
+  theme(title =element_text(size=10, face='bold'))
 
 
 ```
@@ -187,12 +189,12 @@ ggplot(suramerica, aes(fill=area_km2))+
 popsuramerica <- world[world$subregion == "South America",] %>%
   filter(pop >= 40000000)
 
-ggplot(popsuramerica, aes(fill=area_km2))+
+ggplot(popsuramerica, aes(fill=pop))+
   geom_sf()+
   geom_sf_label(aes(label=name_long))+
+  scale_fill_gradient2(low = "blue", mid= "green", high = "red", name = "Población", labels = comma)+
   ggtitle("Paises suramericanos con mas de 40 millones de habitantes")+
   xlab("")+ylab("")+
   theme_bw()+
-  theme(legend.title = element_blank(), 
-        title =element_text(size=10, face='bold'))
+  theme(title =element_text(size=10, face='bold'))
 ```
