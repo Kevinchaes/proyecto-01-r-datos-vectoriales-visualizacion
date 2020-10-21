@@ -1,6 +1,6 @@
 ---
 title: "PF-0953 Programación geoespacial en R<br>Proyecto 01: R - Visualización de datos vectoriales"
-author: "Kevin Chavarría ESquivel"
+author: "Kevin Chavarría ESquivel, Dilena Cruz Fernandez, Alvaro Vásquez Anchía"
 date: "2020-10-07"
 output:
   html_document:
@@ -34,6 +34,7 @@ library(spData)
 library(dplyr)
 #modifica escalas o notaciones
 library(scales)
+
 ```
 
 Realice los siguientes ejercicios de graficación y manejo de datos vectoriales en R (el valor porcentual de cada uno se muestra entre paréntesis).
@@ -120,8 +121,7 @@ ggplot(asia, aes(x=reorder(name_long, -lifeExp), y= lifeExp))+
   scale_x_discrete(
     breaks = c("Japan", "Israel", "Republic of Korea", "Cyprus"),
     label = c("Japón", "Israel", "Republica de Korea", "Chipre"))+
-  scale_fill_continuous(breaks= c(83, 82, 81, 80))+
-  guides(fill=guide_legend(title = "Expectativa\n   de vida"))+
+  scale_fill_gradient(low = "lightblue", high = "darkblue", name = "Expectativa\n   de vida", labels = comma)+
   theme_classic()+ xlab("Paises")+ ylab("Años")+
   ggtitle("Esperanza de vida mayor a 80 años, Asia")+
   theme(plot.title = element_text(hjust = 0.5))
@@ -155,18 +155,20 @@ centroamerica <- world[world$subregion == "Central America",] %>%
 ggplot(centroamerica, aes(fill=lifeExp))+
   geom_sf()+
   geom_sf_label(aes(label=name_long))+
-  
+  scale_fill_gradient(low = "lightblue", high = "darkblue", name = "Expectativa\n   de vida", labels = comma)+
   ggtitle("Expectativa de vida en paises centroameicanos con rango mayor a 74 años")+
   xlab("")+ylab("")+
   theme_bw()+
-  theme(legend.title = element_blank(), 
-        title =element_text(size=10, face='bold'))
+  theme(title =element_text(size=10, face='bold'))
 ```
 
 ### Ejercicio 9 (20%)
 Extraiga en un nuevo data frame los países de América del Sur con área de al menos 2.5 millones de km2 o población de al menos 40 millones de personas y genere un mapa de coropletas para cada variable (i.e. área y población), con sus títulos correspondientes.
 
+
 ```{r}
+#entendimos que se referia a dos graficos, uno para cada variable (area y poblacion)
+
 ```
 
 ```{r}
